@@ -38,7 +38,7 @@ public class TestJSONClassFile
     {
         PreCondition.assertNotNull(property, "property");
 
-        return Result.create2(() ->
+        return Result.create(() ->
         {
             return new TestJSONClassFile(property);
         });

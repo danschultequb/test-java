@@ -219,9 +219,8 @@ public interface QubTestRun
                     consoleTestRunner.addArgument("--coverage=" + coverage);
                 }
 
-                consoleTestRunner.addArguments(outputFolder.getFilesRecursively()
-                    .catchError(FolderNotFoundException.class, () -> Iterable.create())
-                    .await()
+                consoleTestRunner.addArguments(outputFolder.iterateFilesRecursively()
+                    .catchError(FolderNotFoundException.class)
                     .where((File file) -> Comparer.equal(file.getFileExtension(), ".class"))
                     .map((File classFile) -> QubTestRun.getFullClassName(outputFolder, classFile)));
 
@@ -320,7 +319,7 @@ public interface QubTestRun
         });
     }
 
-    static Iterable<File> getSourceClassFiles(Folder outputFolder, Iterable<File> outputClassFiles, Folder sourceFolder, Iterable<File> sourceJavaFiles)
+    static Iterator<File> getSourceClassFiles(Folder outputFolder, Iterator<File> outputClassFiles, Folder sourceFolder, Iterable<File> sourceJavaFiles)
     {
         return outputClassFiles
             .where((File outputClassFile) ->
@@ -383,31 +382,27 @@ public interface QubTestRun
         return result;
     }
 
-    static Result<Iterable<File>> getAllClassFiles(Folder outputFolder)
+    static Iterator<File> iterateAllClassFiles(Folder outputFolder)
     {
         PreCondition.assertNotNull(outputFolder, "outputFolder");
 
-        return Result.create2(() ->
-        {
-            final Iterable<File> allOutputFiles = outputFolder.getFilesRecursively()
-                .catchError(FolderNotFoundException.class, () -> Iterable.create())
-                .await();
-            return allOutputFiles.where((File file) -> Comparer.equal(file.getFileExtension(), ".class"));
-        });
+        return outputFolder.iterateFilesRecursively()
+            .catchError(FolderNotFoundException.class)
+            .where((File file) -> Comparer.equal(file.getFileExtension(), ".class"));
     }
 
-    static Iterable<File> getClassFilesForCoverage(Coverage coverage, Folder outputFolder, Folder sourceFolder, Folder testFolder)
+    static Iterator<File> getClassFilesForCoverage(Coverage coverage, Folder outputFolder, Folder sourceFolder, Folder testFolder)
     {
         PreCondition.assertNotNull(coverage, "coverage");
         PreCondition.assertNotNull(outputFolder, "outputFolder");
         PreCondition.assertNotNull(sourceFolder, "sourceFolder");
         PreCondition.assertNotNull(testFolder, "testFolder");
 
-        Iterable<File> result;
+        Iterator<File> result;
 
         if (coverage == Coverage.All)
         {
-            result = QubTestRun.getAllClassFiles(outputFolder).await();
+            result = QubTestRun.iterateAllClassFiles(outputFolder);
         }
         else
         {
@@ -423,21 +418,23 @@ public interface QubTestRun
 
             if (folder == null)
             {
-                result = Iterable.create();
+                result = Iterator.create();
             }
             else
             {
-                final List<File> allFolderClassFiles = List.create();
-                final Iterable<File> javaFiles = folder.getFilesRecursively()
-                        .catchError(FolderNotFoundException.class, () -> Iterable.create())
-                        .await()
-                        .where((File file) -> Comparer.equal(file.getFileExtension(), ".java"));
-                if (javaFiles.any())
+                final Iterable<File> javaFiles = folder.iterateFilesRecursively()
+                        .catchError(FolderNotFoundException.class)
+                        .where((File file) -> Comparer.equal(file.getFileExtension(), ".java"))
+                        .toList();
+                if (!javaFiles.any())
                 {
-                    final Iterable<File> allClassFiles = QubTestRun.getAllClassFiles(outputFolder).await();
-                    allFolderClassFiles.addAll(QubTestRun.getSourceClassFiles(outputFolder, allClassFiles, folder, javaFiles));
+                    result = Iterator.create();
                 }
-                result = allFolderClassFiles;
+                else
+                {
+                    final Iterator<File> allClassFiles = QubTestRun.iterateAllClassFiles(outputFolder);
+                    result = QubTestRun.getSourceClassFiles(outputFolder, allClassFiles, folder, javaFiles);
+                }
             }
         }
 

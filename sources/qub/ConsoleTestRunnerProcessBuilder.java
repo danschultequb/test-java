@@ -28,7 +28,7 @@ public class ConsoleTestRunnerProcessBuilder extends JavaProcessBuilderDecorator
     {
         PreCondition.assertNotNull(processFactory, "processFactory");
 
-        return Result.create2(() ->
+        return Result.create(() ->
         {
             return new ConsoleTestRunnerProcessBuilder(JavaProcessBuilder.create(processFactory).await());
         });

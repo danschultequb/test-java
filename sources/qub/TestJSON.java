@@ -87,7 +87,7 @@ public class TestJSON extends JSONObjectWrapperBase
      */
     public Result<VersionNumber> getJavaVersion()
     {
-        return Result.create2(() ->
+        return Result.create(() ->
         {
             final String javaVersionString = this.json.getString(TestJSON.javaVersionPropertyName).await();
             return VersionNumber.parse(javaVersionString).await();

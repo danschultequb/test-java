@@ -17,7 +17,7 @@ public class ConsoleTestRunner implements TestRunner
         final CommandLineParameters parameters = process.createCommandLineParameters();
         final CommandLineParameter<PathPattern> patternParameter = parameters.add("pattern", (String argumentValue) ->
         {
-            return Result.success2(Strings.isNullOrEmpty(argumentValue)
+            return Result.success(Strings.isNullOrEmpty(argumentValue)
                 ? null
                 : PathPattern.parse(argumentValue));
         });
