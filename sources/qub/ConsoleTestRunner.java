@@ -571,11 +571,11 @@ public class ConsoleTestRunner implements TestRunner
         final StackTraceElement[] stackTraceElements = t.getStackTrace();
         if (stackTraceElements != null && stackTraceElements.length > 0)
         {
-            this.writeStream.writeLine("Stack Trace:");
+            this.writeStream.writeLine("Stack Trace:").await();
             this.increaseIndent();
             for (StackTraceElement stackTraceElement : stackTraceElements)
             {
-                this.writeStream.writeLine("at " + stackTraceElement.toString());
+                this.writeStream.writeLine("at " + stackTraceElement.toString()).await();
             }
             this.decreaseIndent();
         }

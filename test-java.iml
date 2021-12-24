@@ -1,68 +1,68 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <output url="file://$MODULE_DIR$/outputs"/>
-    <output-test url="file://$MODULE_DIR$/outputs"/>
-    <exclude-output/>
+    <output url="file://$MODULE_DIR$/outputs" />
+    <output-test url="file://$MODULE_DIR$/outputs" />
+    <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/sources" isTestSource="false"/>
-      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true"/>
-      <excludeFolder url="file://$MODULE_DIR$/outputs"/>
+      <sourceFolder url="file://$MODULE_DIR$/sources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/outputs" />
     </content>
-    <orderEntry type="inheritedJdk"/>
-    <orderEntry type="sourceFolder" forTests="false"/>
+    <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/qub/qub/jacococli-java/versions/57/jacococli-java.jar!/"/>
+          <root url="jar://C:/qub/qub/jacococli-java/versions/57/jacococli-java.jar!/" />
         </CLASSES>
-        <JAVADOC/>
+        <JAVADOC />
         <SOURCES>
-          <root url="jar://C:/qub/qub/jacococli-java/versions/57/jacococli-java.sources.jar!/"/>
+          <root url="jar://C:/qub/qub/jacococli-java/versions/57/jacococli-java.sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/qub/qub/javacli-java/versions/57/javacli-java.jar!/"/>
+          <root url="jar://C:/qub/qub/javacli-java/versions/57/javacli-java.jar!/" />
         </CLASSES>
-        <JAVADOC/>
+        <JAVADOC />
         <SOURCES>
-          <root url="jar://C:/qub/qub/javacli-java/versions/57/javacli-java.sources.jar!/"/>
+          <root url="jar://C:/qub/qub/javacli-java/versions/57/javacli-java.sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/qub/qub/lib-java/versions/134/lib-java.jar!/"/>
+          <root url="jar://C:/qub/qub/lib-java/versions/134/lib-java.jar!/" />
         </CLASSES>
-        <JAVADOC/>
+        <JAVADOC />
         <SOURCES>
-          <root url="jar://C:/qub/qub/lib-java/versions/134/lib-java.sources.jar!/"/>
+          <root url="jar://C:/qub/qub/lib-java/versions/134/lib-java.sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/qub/qub/build-java/versions/67/build-java.jar!/"/>
+          <root url="jar://C:/qub/qub/build-java/versions/67/build-java.jar!/" />
         </CLASSES>
-        <JAVADOC/>
+        <JAVADOC />
         <SOURCES>
-          <root url="jar://C:/qub/qub/build-java/versions/67/build-java.sources.jar!/"/>
+          <root url="jar://C:/qub/qub/build-java/versions/67/build-java.sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/qub/qub/projectjson-java/versions/92/projectjson-java.jar!/"/>
+          <root url="jar://C:/qub/qub/projectjson-java/versions/92/projectjson-java.jar!/" />
         </CLASSES>
-        <JAVADOC/>
+        <JAVADOC />
         <SOURCES>
-          <root url="jar://C:/qub/qub/projectjson-java/versions/92/projectjson-java.sources.jar!/"/>
+          <root url="jar://C:/qub/qub/projectjson-java/versions/92/projectjson-java.sources.jar!/" />
         </SOURCES>
       </library>
     </orderEntry>

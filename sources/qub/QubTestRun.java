@@ -221,7 +221,8 @@ public interface QubTestRun
 
                 consoleTestRunner.addArguments(outputFolder.iterateFilesRecursively()
                     .catchError(FolderNotFoundException.class)
-                    .where((File file) -> Comparer.equal(file.getFileExtension(), ".class"))
+                    .where((File file) -> Comparer.equal(file.getFileExtension(), ".class") &&
+                                          !file.getName().contains("$"))
                     .map((File classFile) -> QubTestRun.getFullClassName(outputFolder, classFile)));
 
                 verbose.writeLine("Running " + consoleTestRunner.getCommand()).await();
